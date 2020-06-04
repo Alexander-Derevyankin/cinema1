@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+
+{% block title%}
+    Blueprint index page
+{% endblock %}
+
+{% block content_title %}
+
+
+{% endblock %}
+
+{% block content%}
+    {% for posts in postsoon %}
+        {% if posts.soon%}
+                <div class="card text-white bg-dark mb-3" style="max-width: 1080px; min-height: 360;">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="{{posts.picture}}" width="267" height="400" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                          <h5 class="card-title"><a href="{{url_for('posts.post_detail',slug=posts.slug)}}"><h1><font color=" #69ff93;">{{posts.title}}</font></h1></a></h5>
+                          <p class="card-text">{{posts.prewiew}}</p>
+                          <p class="card-text"><small class="text-muted"><font color="white"><h5>Продолжительность : {{posts.duration_film}}</h5></font></small></p>
+                          <p class="card-text"><small class="text-muted"><font color="white"><h5>Жанр : {{posts.genre}}</h5></font></small></p>
+                          <p class="card-text"><small class="text-muted"><font color="white"><h5>Вохрастное ограничение : {{posts.age}}</h5></font></small></p>
+                          <p class="card-text"><small class="text-muted"><font color="white"><h5>Страна : {{posts.country}}</h5></font></small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        {% endif %}
+
+    {%endfor%}
+    <head>
+      <meta charset="utf-8">
+      <title>background-image</title>
+      <style>
+       body {
+        background-image: url(static/img/bg.jpg); /* Путь к фоновому изображению */
+        background-color: #10101A; /* Цвет фона */
+       }
+
+{% endblock %}

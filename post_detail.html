@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+
+{% block title%}
+
+{% endblock %}
+
+{% block content_title %}
+{% endblock %}
+
+{% block content%}
+<head>
+  <meta charset="utf-8">
+  <title>background-image</title>
+  <style>
+   body {
+    background-image: url(static/img/bg.jpg); /* Путь к фоновому изображению */
+    background-color: #10101A; /* Цвет фона */
+   }
+<head>
+    <meta charset="utf-8">
+    <title>Два разных текста на одной строке</title>
+    <style>
+   .leftstr, .rightstr {
+    float: left; /* Обтекание справа */
+    width: 50%; /* Ширина текстового блока */
+   }
+   .rightstr {
+    text-align: right; /* Выравнивание по правому краю */
+   }
+   .text {
+    text-align:  center;
+   }
+
+    </style>
+</head>
+<body>
+
+<div class="page clear wrap">
+    <div class="content">
+        <div id="system-message-container">
+        </div>
+
+
+        <div class="film clear" itemscope="" itemtype="http://schema.org/Movie">
+            <div class="information">
+                <div class="cover">
+                    <div class="media"></div>
+                </div>
+
+                <div class="title" , class="center"><h1 itemprop="name">{{post.title}}</h1></div>
+            </div>
+            <div class="meta">
+                <div class="leftstr">
+                    <div class="content-list">
+                        <div class="item">
+
+                            <div class="title"><span><h4>Дата премьеры</h4></span></div>
+                            <div class="value"><span>{{post.premier}}</span></div>
+                        </div>
+
+
+                        <div class="item" itemprop="director" itemscope="" itemtype="http://schema.org/Person">
+
+                            <div class="title"><span><h4>Режиссер</h4></span></div>
+                            <div class="value" itemprop="name"><span>{{post.producer}}</span></div>
+                        </div>
+
+
+                        <div class="item" itemprop="actor" itemscope="" itemtype="http://schema.org/Person">
+
+                            <div class="title"><span><h4>В ролях</h4></span></div>
+                            <div class="value" itemprop="name"><span>{{post.inroles}}</span></div>
+                        </div>
+
+
+                        <div class="item">
+
+                            <div class="title"><span><h4>Жанр</h4></span></div>
+                            <div class="value"><span>{{post.genre}}</span></div>
+                        </div>
+
+                        <div class="item">
+                            <div class="title"><span><h4>Страна</h4></span></div>
+                            <div class="value"><span>{{post.country}}</span></div>
+                        </div>
+
+                        <div class="item">
+
+                            <div class="title"><span><h4>Возрастное ограничение</h4></span></div>
+                            <div class="value"><span>{{post.age}}</span></div>
+                        </div>
+
+                        <div class="item">
+
+                            <div class="title"><span><h4>Продолжительность</h4></span></div>
+                            <div class="value"><span>{{post.duration_film}}</span></div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span><h4>Описание</h4></div>
+                            <div class="description" itemprop="description"><span>{{post.body}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="rightstr">
+            <div class="content">
+                <div class="schedule">
+                    <div class="title"><span><big>
+
+                    </big></span></div>
+
+
+                </div>
+                <div class="col-md-8 offset-md-2">
+                    <div class="title"><span><h4>      </h4></span></div>
+                    <img src="{{post.picture}}" class="card-img" alt="...">
+                    <div class="title"><span><h4>      </h4></span></div>
+                    <div class="title"><span><h4>      </h4></span></div>
+                </div>
+                <div class="title"><span><h4> Трейлер </h4></span></div>
+                <div class="trailer">
+                    <div class="title"><span><big>
+
+
+
+                    </big></span></div>
+
+                    <div class="content">
+
+
+                        <!-- JoomlaWorks "AllVideos" Plugin (v5.1.0) starts here -->
+
+                        <div class="avPlayerWrapper avVideo">
+                            <div class="avPlayerContainer">
+                                <div id="AVPlayerID_0_552d74b94c27af38e42b24b4a4264e1c" class="avPlayerBlock">
+                                    <iframe src="{{post.video}}"
+                                            width="500" height="300" allow="autoplay; encrypted-media"
+                                            allowfullscreen="true" frameborder="0" scrolling="no"
+                                            title="JoomlaWorks AllVideos Player"></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <
+                        <!-- JoomlaWorks "AllVideos" Plugin (v5.1.0) ends here -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JoomlaWorks "K2" (v2.9.0) | Learn more about K2 at http://getk2.org -->
+
+    <div style="clear: left"></div>
+</div>
+</div>
+        {% if post.full %}
+            <div class="col-md-3">
+                </div>
+                <div class="title"><span><h4> Смотреть Онлайн </h4></span></div>
+                        <div class="avPlayerContainer">
+                                <div id="AVPlayerID_0_552d74b94c27af38e42b24b4a4264e1c" class="avPlayerBlock">
+                                    <iframe src="{{post.full}}"
+                                            width="1080" height="920" allow="autoplay; encrypted-media"
+                                            allowfullscreen="true" frameborder="0" scrolling="no"
+                                            title="JoomlaWorks AllVideos Player"></iframe>
+                                </div>
+                            </div>
+        {% endif %}
+</body>
+{% endblock %}

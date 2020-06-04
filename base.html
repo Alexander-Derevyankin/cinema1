@@ -1,0 +1,139 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <title>
+        {% block title %}
+
+        {% endblock %} | Flask app
+
+    </title>
+    <meta charset="utf-8">
+    <title>Два разных текста на одной строке</title>
+    <style>
+   table.text  {
+    width:  100%; /* Ширина таблицы */
+    border-spacing: 0; /* Расстояние между ячейками */
+   }
+   table.text td {
+    width: 50%; /* Ширина ячеек */
+    vertical-align: top; /* Выравнивание по верхнему краю */
+   }
+   td.rightcol { /* Правая ячейка */
+    text-align: right; /* Выравнивание по правому краю */
+   }
+
+
+    </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg--light" style="background-color: #5ee684;">
+
+    <a class="navbar-brand" href="{{ url_for('index') }}">BabyYodaFilm</a>
+    <img src="{{ url_for('static', filename='img/logo.ico') }}" width="60" height="60"
+         class="d-inline-block align-top" alt="">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+
+                </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item active ">
+                <a class="nav-link" href="{{ url_for('index') }}"><big>Главная</big><span
+                        class="sr-only">(current)</span></a>
+            </li>
+             {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('posts.index') }}"><big>Фильмы</big></a>
+            {%endif%}
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('posts.soon') }}"><big>Скоро в кино</big></a>
+
+            <li class="nav-item">
+                {% if current_user.has_role('admin')%}
+                <a class="nav-link" href="/admin"><big>Admin</big></a>
+                {% endif %}
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="GET">
+            <div class="form-group">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q"
+                       value={{request.args.get("q","")}}>
+
+
+            </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            {% if current_user.is_anonymous %}
+            <li class="nav-link">
+                <a class="nav-link" href="{{ url_for('login') }}"><span class="glyphicon glyphicon-user"></span><big>Sign
+                    Up</big></a>
+            <li class="nav-link">
+                <a class="nav-link" href="{{ url_for('register') }}"><span
+                        class="glyphicon glyphicon-log-in"></span><big>Register</big></a>
+                {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('user', username=current_user.username) }}"><big>Profile</big></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}"><big>Logout</big></a>
+            </li>
+            {% endif %}
+
+            </form>
+    </div>
+
+</nav>
+
+<div class="container">
+    <div class="col">
+        <h1>
+            {% block content_title %}
+
+            {% endblock %}
+        </h1>
+        {% block content%}
+        {% endblock %}
+
+
+    </div>
+
+</div>
+
+</body>
+<footer>
+    <div class="clear wrap info">
+        <div class="block copyright">
+            <div class="head"><font color="white"><span>Информация</span></font></div>
+            <div class="content"><span><p>
+
+</p><div class="social icons " style="background-color: #333333;">
+			<div class="item vk"><a href="https://vk.com/liegion" rel="nofollow" target="_blank"><i
+                    class="si si-fw si-vk" style="color: #ffffff;"></i></a></div>
+
+			</div>
+
+<div class="rightcol">
+
+            <div class="custom contacts">
+                <font color="white">
+                <p style="font-size: 0.8em;">п. Мандалор, Квадрат E7-C223</p></div>
+                <p></p></span></div>
+                <div class="content"><span><p>© 3500-3524 Все права защищены.</p></span></div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+</html>
